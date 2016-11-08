@@ -65,6 +65,11 @@ card.forEach(function(name) {
 
 
   name.addEventListener('click', function(variable) {
+    console.log(turnedCardsArray);
+
+
+
+
 
   var getImageUrl = turnedCardsArray.includes(name.textContent);
 
@@ -73,36 +78,32 @@ card.forEach(function(name) {
   turnedID.push(name.id);
   turnedCardsArray.push(name.textContent);
 
-  upDateVariable(variable);
 
-  if (getImageUrl === true && turnedID[0] !== name.id) {
+  if (turnedCardsArray.length > 1) {
 
-    par.push(turnedID[0]);
-    par.push(turnedID[1]);
+    if (turnedCardsArray[0] === turnedCardsArray[1]) {
+      reset();
+      countTurned += 2;
+      if (countTurned === memoryArray.length) {
+          alert('Grattis');
+          var container = document.querySelector('.memory-container');
+          container.innerHTML = '';
+          newDeck();
 
+      }
 
-
-    setTimeout(par, 1000);
-
-
-  } else if (countTurned >= 2 && getImageUrl === false ) {
-
-
-
+    } else {
 
         setTimeout(tillbaka, 1000);
-
+    }
 
   }
-
   });
 
 });
 //FUNCTION TO UPDATE GLOBAL VARIABLE "COUNTTURNED" FROM EVENT LISTENER CALLBACK
 
-function upDateVariable(variable) {
-  countTurned++;
-}
+
 
 function tillbaka() {
 
@@ -114,10 +115,18 @@ function tillbaka() {
   idTva.style.background = 'url("images/baksida.jpg")';
   turnedID = [];
   turnedCardsArray = [];
-  countTurned = 0;
+}
 
-}
-function par () {
-  alert('Grattis du har ett par');
+
+function reset() {
   turnedID = [];
+  turnedCardsArray = [];
 }
+
+var replay = document.querySelector('.board');
+
+replay.addEventListener('click', function() {
+  var container = document.querySelector('.memory-container');
+  container.innerHTML = '';
+  newDeck();
+});
