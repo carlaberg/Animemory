@@ -1,3 +1,6 @@
+
+'use strict';
+
 //VARIABLES
 
 var memoryArray = [
@@ -53,30 +56,32 @@ function newDeck() {
     createCard.id = count + 1;
     count++;
   }
+  addClickEvent();
 }
 
 newDeck(); //CALL NEW DECK FUNCTION
 
 //TURN CARDS ON CLICK
 
-var card = document.querySelectorAll('.back');
-
-card.forEach(function(name) {
-
-
-  name.addEventListener('click', function(variable) {
-    console.log(turnedCardsArray);
+function addClickEvent() {
+  var card = document.querySelectorAll('.back');
 
 
+  for (var i = 0; i < card.length; i++) {
+
+    card[i].addEventListener('click', gameFunction, false);
+
+  }
+};
 
 
-
-  var getImageUrl = turnedCardsArray.includes(name.textContent);
-
-  name.style.background = '#F4F1DE url("' + name.textContent + '") center no-repeat';
-  name.style.backgroundSize = '70%';
-  turnedID.push(name.id);
-  turnedCardsArray.push(name.textContent);
+function gameFunction(event) {
+  var brick = event.target;
+  var getImageUrl = turnedCardsArray.includes(brick.textContent);
+  brick.style.background = '#F4F1DE url("' + brick.textContent + '") center no-repeat';
+  brick.style.backgroundSize = '70%';
+  turnedID.push(brick.id);
+  turnedCardsArray.push(brick.textContent);
 
 
   if (turnedCardsArray.length > 1) {
@@ -84,6 +89,7 @@ card.forEach(function(name) {
     if (turnedCardsArray[0] === turnedCardsArray[1]) {
       reset();
       countTurned += 2;
+      console.log(memoryArray.length);
       if (countTurned === memoryArray.length) {
           alert('Grattis');
           var container = document.querySelector('.memory-container');
@@ -92,15 +98,22 @@ card.forEach(function(name) {
 
       }
 
+      var removeListener1 = document.getElementById(turnedID[0]);
+      var removeListener2 = document.getElementById(turnedID[1]);
+      removeListener1.removeEventListener('click', gameFunction, false);
+      removeListener2.removeEventListener('click', gameFunction, false);
+
+
     } else {
 
         setTimeout(tillbaka, 1000);
     }
 
   }
-  });
 
-});
+};
+
+
 //FUNCTION TO UPDATE GLOBAL VARIABLE "COUNTTURNED" FROM EVENT LISTENER CALLBACK
 
 
@@ -128,5 +141,6 @@ var replay = document.querySelector('.board');
 replay.addEventListener('click', function() {
   var container = document.querySelector('.memory-container');
   container.innerHTML = '';
+  reset();
   newDeck();
 });

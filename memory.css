@@ -4,6 +4,13 @@ html, body {
   margin: 0;
   background: #E07A5F;
 }
+h3 {
+  font-family: 'Catamaran', sans-serif;
+  color: #F4F1DE;
+  font-weight: 800;
+  font-size: 20px;
+}
+
 .header {
   width: 540px;
   height: 120px;
@@ -11,10 +18,25 @@ html, body {
   font-family: 'Catamaran', sans-serif;
   font-weight: 900;
   font-size: 100px;
-  margin: 20px auto;
+  margin: 20px auto 0;
   text-align: center;
   line-height: 120px;
 }
+
+.board {
+  width: 910px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.replay {
+  width: 33.33%;
+  text-align: center;
+  cursor: pointer;
+}
+
+
 .memory-container {
   display: flex;
   flex-wrap: wrap;
@@ -29,6 +51,7 @@ html, body {
   margin-bottom: 50px;
   border-radius: 100%;
   border: 5px solid #F4F1DE;
+  cursor: pointer;
 
 }
 .back {
