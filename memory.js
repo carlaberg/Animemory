@@ -12,6 +12,7 @@ var memoryArray = [
   'images/rav.svg',
   'images/tiger.svg',
   'images/zebra.svg',
+	'images/ko.svg',
   'images/apa.svg',
   'images/elefant.svg',
   'images/gris.svg',
@@ -19,7 +20,8 @@ var memoryArray = [
   'images/panda.svg',
   'images/rav.svg',
   'images/tiger.svg',
-  'images/zebra.svg'
+  'images/zebra.svg',
+  'images/ko.svg'
 ];
 
 var countTurned = 0;
