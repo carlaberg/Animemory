@@ -63,7 +63,7 @@ function newDeck() {
     var createCard = document.createElement('div');
     document.querySelector('.memory-container').appendChild(createCard);
     createCard.classList.add('back');
-    createCard.textContent = memoryArray[i];
+    createCard.textContent = memoryArray[i]; //SET IMAGE URL AS TEXTCONTENT (HIDDEN WITH CSS).
     createCard.id = count + 1;
     count++;
   }
@@ -75,14 +75,13 @@ newDeck(); //CALL NEWDECK FUNCTION WHEN PAGE LOADS
 //
 
 function gameFunction(event) {
-	//FLIPS CARDS ON 
+	//FLIP CARDS ON CLICK
   var brick = event.target;
-  var getImageUrl = turnedCardsArray.includes(brick.textContent);
-  brick.style.background = '#F4F1DE url("' + brick.textContent + '") center no-repeat';
+  brick.style.background = '#F4F1DE url("' + brick.textContent + '") center no-repeat'; //USE TEXT CONTENT OF CLICKED CARD TO SHOW ANIMALS WHEN FLIPPED
   brick.style.backgroundSize = '70%';
+	//PUSH FLIPPED CARD ID AND IMAGE URL TO NEW ARRAY
   turnedID.push(brick.id);
   turnedCardsArray.push(brick.textContent);
-
 
   if (turnedCardsArray.length > 1) {
 
@@ -96,10 +95,9 @@ function gameFunction(event) {
           container.innerHTML = '';
           newDeck();
       }
-
-      var removeListener1 = document.getElementById(turnedID[0]);
-      var removeListener2 = document.getElementById(turnedID[1]);
-      removeListener1.removeEventListener('click', gameFunction, false);
+			var removeListener1 = document.getElementById(turnedID[0]);
+			var removeListener2 = document.getElementById(turnedID[1]);
+			removeListener1.removeEventListener('click', gameFunction, false);
       removeListener2.removeEventListener('click', gameFunction, false);
 
     } else {
@@ -110,7 +108,7 @@ function gameFunction(event) {
 
 //FLIP CARDS BACK IF NO PAIR
 
-function filpBack() {
+function flipBack() {
 
   var idEtt = document.getElementById(turnedID[0]);
   var idTva = document.getElementById(turnedID[1]);
