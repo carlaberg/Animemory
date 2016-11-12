@@ -62,6 +62,14 @@ h3 {
 
 
 /*MEDIA QUERIES*/
-@media only screen and (min-width: 725px) {
-
+@media screen and (max-width: 420px) {
+	.memory-container div{
+		width: 23vw;
+		height: 23vw;
+		margin: 2.1vw;
+		border: 3px solid #F4F1DE;
+	}
+	.memory-container {
+		width: 90%;
+	}
 }
