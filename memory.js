@@ -1,7 +1,7 @@
 
 'use strict';
 
-//VARIABLES
+// GLOBAL VARIABLES
 
 var memoryArray = [
   'images/apa.svg',
@@ -27,7 +27,6 @@ var turnedID = [];
 var turnedCardsArray = [];
 var par = [];
 
-
 // SHUFFLE FUNCTION
 
 Array.prototype.shuffle = function() {
@@ -40,7 +39,19 @@ Array.prototype.shuffle = function() {
   }
 }
 
-//NEW DECK FUNCTION
+//ADD CLICK EVENT TO THE CARDS
+
+function addClickEvent() {
+  var card = document.querySelectorAll('.back');
+
+  for (var i = 0; i < card.length; i++) {
+
+    card[i].addEventListener('click', gameFunction, false);
+
+  }
+};
+
+//CREATE NEW SHUFFLED BOARD
 
 function newDeck() {
 
@@ -59,23 +70,12 @@ function newDeck() {
   addClickEvent();
 }
 
-newDeck(); //CALL NEW DECK FUNCTION
+newDeck(); //CALL NEWDECK FUNCTION WHEN PAGE LOADS
 
-//TURN CARDS ON CLICK
-
-function addClickEvent() {
-  var card = document.querySelectorAll('.back');
-
-
-  for (var i = 0; i < card.length; i++) {
-
-    card[i].addEventListener('click', gameFunction, false);
-
-  }
-};
-
+//
 
 function gameFunction(event) {
+	//FLIPS CARDS ON 
   var brick = event.target;
   var getImageUrl = turnedCardsArray.includes(brick.textContent);
   brick.style.background = '#F4F1DE url("' + brick.textContent + '") center no-repeat';
@@ -95,7 +95,6 @@ function gameFunction(event) {
           var container = document.querySelector('.memory-container');
           container.innerHTML = '';
           newDeck();
-
       }
 
       var removeListener1 = document.getElementById(turnedID[0]);
@@ -103,26 +102,18 @@ function gameFunction(event) {
       removeListener1.removeEventListener('click', gameFunction, false);
       removeListener2.removeEventListener('click', gameFunction, false);
 
-
     } else {
-
-        setTimeout(tillbaka, 1000);
+				setTimeout(flipBack, 1000);
     }
-
   }
-
 };
 
+//FLIP CARDS BACK IF NO PAIR
 
-//FUNCTION TO UPDATE GLOBAL VARIABLE "COUNTTURNED" FROM EVENT LISTENER CALLBACK
-
-
-
-function tillbaka() {
+function filpBack() {
 
   var idEtt = document.getElementById(turnedID[0]);
   var idTva = document.getElementById(turnedID[1]);
-
 
   idEtt.style.background = 'url("images/baksida.jpg")';
   idTva.style.background = 'url("images/baksida.jpg")';
@@ -130,11 +121,14 @@ function tillbaka() {
   turnedCardsArray = [];
 }
 
+//RESETS VALUES AFTER ROUND
 
 function reset() {
   turnedID = [];
   turnedCardsArray = [];
 }
+
+//REPLAY BUTTON
 
 var replay = document.querySelector('.board');
 
