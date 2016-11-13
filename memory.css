@@ -11,14 +11,19 @@ h3 {
   font-size: 20px;
 }
 
+.pagewrap {
+	height: 100%;
+
+}
+
 .header {
   width: 74%;
   height: 100px;
   color: #F4F1DE;
   font-family: 'Catamaran', sans-serif;
   font-weight: 900;
-  font-size: 90px;
-  margin: 20px auto 0;
+  font-size: 80px;
+  margin: 0 auto;
   text-align: center;
   line-height: 120px;
 }
@@ -30,12 +35,15 @@ h3 {
   justify-content: center;
 }
 
+.boardunder {
+	display: none;
+}
+
 .replay {
   width: 33.33%;
   text-align: center;
   cursor: pointer;
 }
-
 
 .memory-container {
   display: flex;
@@ -62,14 +70,28 @@ h3 {
 
 
 /*MEDIA QUERIES*/
+
 @media screen and (max-width: 420px) {
 	.memory-container div{
-		width: 23vw;
-		height: 23vw;
-		margin: 2.1vw;
+		width: 17vw;
+		height: 17vw;
+		margin: 2vw;
 		border: 3px solid #F4F1DE;
+
 	}
 	.memory-container {
 		width: 90%;
+		justify-content: center;
+	}
+	.header {
+		font-size: 38px;
+	}
+
+	.board {
+		display: none;
+	}
+	.boardunder {
+		display: flex;
+		justify-content: center;
 	}
 }
