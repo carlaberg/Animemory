@@ -53,6 +53,18 @@ function addClickEvent() {
   }
 };
 
+//REMOVE CLICK EVENT FROM CARDS
+
+function removeClickEvent() {
+  var rcard = document.querySelectorAll('.back');
+
+  for (var i = 0; i < rcard.length; i++) {
+
+    rcard[i].removeEventListener('click', gameFunction, false);
+
+  }
+};
+
 //CREATE NEW SHUFFLED BOARD
 
 function newDeck() {
@@ -85,11 +97,18 @@ function gameFunction(event) {
   turnedID.push(brick.id);
   turnedCardsArray.push(brick.textContent);
 
-  if (turnedCardsArray.length > 1) {
+  if (turnedCardsArray.length === 1) {
+		var removeListener1 = document.getElementById(turnedID[0]);
+		var removeListener2 = document.getElementById(turnedID[1]);
+		removeListener1.removeEventListener('click', gameFunction, false);
 
+	}
+  if (turnedCardsArray.length > 1) {
+		removeClickEvent();
     if (turnedCardsArray[0] === turnedCardsArray[1]) {
       reset();
       countTurned += 2;
+			addClickEvent();
       console.log(memoryArray.length);
       if (countTurned === memoryArray.length) {
           alert('Grattis');
@@ -97,8 +116,7 @@ function gameFunction(event) {
           container.innerHTML = '';
           newDeck();
       }
-			var removeListener1 = document.getElementById(turnedID[0]);
-			var removeListener2 = document.getElementById(turnedID[1]);
+
 			removeListener1.removeEventListener('click', gameFunction, false);
       removeListener2.removeEventListener('click', gameFunction, false);
 
@@ -112,6 +130,9 @@ function gameFunction(event) {
 
 function flipBack() {
 
+//	var addListener1 = document.getElementById(turnedID[0]);
+//	addListener1.addEventListener('click', gameFunction, false);
+	addClickEvent();
   var idEtt = document.getElementById(turnedID[0]);
   var idTva = document.getElementById(turnedID[1]);
 
