@@ -1,3 +1,7 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -45,6 +49,10 @@ h3 {
   cursor: pointer;
 }
 
+
+
+/*FLIP TRANSITION STYLES*/
+
 .memory-container {
   display: flex;
   flex-wrap: wrap;
@@ -53,31 +61,74 @@ h3 {
   margin: 0 auto;
 
 }
-.memory-container div {
+
+.flip-container {
+	perspective: 1000px;
 	width: 9vw;
 	height: 9vw;
 	margin: 1.1vw;
-  border-radius: 100%;
-  border: 5px solid #F4F1DE;
-  cursor: pointer;
+	border-radius: 100%;
+}
 
+.flip-container, .front, .back {
+	width: 9vw;
+	height: 9vw;
+}
+
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: 5px solid #F4F1DE;
+	cursor: pointer;
 }
 .back {
   background: url('images/baksida.jpg');
-  color: rgba(0,0,0,0);
+	transform: rotateY(0deg);
+  border-radius: 100%;
+	z-index: 2;
+
+
 }
+.front {
+  border-radius: 100%;
+	transform: rotateY(180deg);
+	color: rgba(0,0,0,0);
+}
+
+.flip-container.hover .flipper, .flip-container.flip .flipper {
+	transform: rotateY(180deg);
+}
+
+
 
 
 
 /*MEDIA QUERIES*/
 
 @media screen and (max-width: 420px) {
-	.memory-container div{
+
+	.flip-container {
 		width: 17vw;
 		height: 17vw;
 		margin: 2vw;
-		border: 3px solid #F4F1DE;
 
+	}
+	.flip-container, .front, .back {
+		width: 17vw;
+		height: 17vw;
+	}
+	.front, .back {
+		border: 3px solid #F4F1DE;
 	}
 	.memory-container {
 		width: 90%;
