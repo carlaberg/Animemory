@@ -71,6 +71,8 @@ function newDeck() {
 
 	memoryArray.shuffle();
 
+//THIS BLOCK PUTS NESTED DIVS NEEDED FOR FLIPPING IN THE DOM
+//NOT WORKING IN FIREFOX YET BECAUSE OF PROBLEMS WITH ITERATING OVER QUERYSELECTORALL WITH FOREACH
 	var count = 0;
 
 	for (var i = 0; i < memoryArray.length; i++ ) {
